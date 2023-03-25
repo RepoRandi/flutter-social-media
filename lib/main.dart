@@ -3,6 +3,7 @@ import 'package:social_media/config/app_color.dart';
 import 'package:social_media/config/app_route.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
