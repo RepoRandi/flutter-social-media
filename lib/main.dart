@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:social_media/config/app_color.dart';
 import 'package:social_media/config/app_route.dart';
+import 'package:social_media/controller/c_user.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,16 +14,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: AppColor.primary,
-        colorScheme: const ColorScheme.light().copyWith(
-          primary: AppColor.primary,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CUser(),
+        )
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primaryColor: AppColor.primary,
+          colorScheme: const ColorScheme.light().copyWith(
+            primary: AppColor.primary,
+          ),
         ),
+        routerConfig: AppRoute.routerConfig,
       ),
-      routerConfig: AppRoute.routerConfig,
     );
   }
 }
